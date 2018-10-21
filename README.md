@@ -1,4 +1,4 @@
-# Code for start using Google Analytics data in R
+# Code for Google Analytics data
 
 ## Table of contents
 
