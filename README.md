@@ -5,12 +5,12 @@
 * Loading libraries and data
 
 * EDA
-+Missing data
-+The response variable; transactionRevenue
-  +2.3 Time series and grouping by workday and by month
-  +2.3.1 Time series of sessions and revenues by Date
-  +2.3.2 Sessions and revenues by Workday
-  +2.3.3 Sessions and revenues by Month
+  + Missing data
+  + The response variable; transactionRevenue
+  + 2.3 Time series and grouping by workday and by month
+  + 2.3.1 Time series of sessions and revenues by Date
+  + 2.3.2 Sessions and revenues by Workday
+  + 2.3.3 Sessions and revenues by Month
   
 * Channel grouping and the source/medium dimension
  +2.4.1 Channel grouping
