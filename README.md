@@ -13,19 +13,19 @@
   + Sessions and revenues by Month
   
 * Channel grouping and the source/medium dimension
- + Channel grouping
- + The source/medium dimension
+  + Channel grouping
+  + The source/medium dimension
  
 * Operating system, browser and device category
- + Device category
- + Operating system
- + Browser
+  + Device category
+  + Operating system
+  + Browser
  
 * Pageviews, Bounces and Hits
- + Pageviews; all sessions.
- + Pageviews; only sessions with any transaction revenue.
- + Pageviews versus percent transactions
- + Bounces
- + Hits
+  + Pageviews; all sessions.
+  + Pageviews; only sessions with any transaction revenue.
+  + Pageviews versus percent transactions
+  + Bounces
+  + Hits
  
 * Sessions, revenues and transactions by country
