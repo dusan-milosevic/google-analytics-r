@@ -23,7 +23,6 @@ classoption: landscape
 * Heatmap by hour and day of week
 * Facet line chart by gender
 * Grouped affinity categories in bar chart
-* Grouped in-market categories in bar chart
 
 ## Setup
 ```{r, echo=FALSE, warning=FALSE,error=FALSE, message=FALSE }
