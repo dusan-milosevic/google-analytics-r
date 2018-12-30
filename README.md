@@ -13,6 +13,9 @@
 * Facet area charts by weekdays
 * Scatter plot share sessions vs sales by channel
 * Heatmap by hour and day of week
+* Facet line chart by gender
+* Grouped affinity categories in bar chart
+* Grouped in-market categories in bar chart
 
 ![picture alt](https://dusanmilosevic.com/wp-content/uploads/2017/11/google-analytics-api-v4-r-line-plot-768x489.jpeg)
 
