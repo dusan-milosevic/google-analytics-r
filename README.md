@@ -9,7 +9,7 @@
 * Histogram plot
 * Scatter plot
 * Bar chart
-* Box  plot
+* Box plot
 * Facet area charts by weekdays
 * Scatter plot share sessions vs sales by channel
 * Heatmap by hour and day of week
