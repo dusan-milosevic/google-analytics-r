@@ -1,1 +1,63 @@
+---
+title: "R Markdown Google Analytics Report"
+date: "30/12/2018"
+fontsize: 11pt
+output:
+  html_document:
+    df_print: paged
+geometry: margin=0.5cm
+classoption: landscape
+---
 
+## Table of contents:
+
+1. Setup
+2. Exploratory data analysis
+3. Data visualization
+* Line chart
+* Histogram plot
+* Scatter plot
+* Bar chart
+* Box plot
+* Facet area charts by weekdays
+* Scatter plot share sessions vs sales by channel
+* Heatmap by hour and day of week
+* Facet line chart by gender
+* Grouped affinity categories in bar chart
+* Grouped in-market categories in bar chart
+
+```{r, echo=FALSE, warning=FALSE,error=FALSE, message=FALSE }
+## Install libraries
+install.packages("googleAuthR")
+install.packages("googleAnalyticsR")
+install.packages("tidyverse")
+
+## Load libraries
+library("googleAuthR")
+library("googleAnalyticsR")
+library("tidyverse")
+
+## Authorization with GA GA servers
+ga_auth()
+
+## Force new aurization, even if there is a cached token
+## ga_auth(new_user = TRUE) 
+
+## Google Analytics Account List
+account_list <- google_analytics_account_list()
+
+## Google Analytics View ID 
+GA_id <- XXXXXXXX
+
+## GA Query
+ga <- google_analytics(GA_id, 
+                       date_range = c("2018-01-01", "2018-12-31"),  
+                       metrics = c("sessions"), 
+                       dimensions = c("date"),
+                       anti_sample = TRUE)
+```
+
+```{r, echo=FALSE, warning=FALSE,error=FALSE, message=FALSE, fig.width=10, fig.height=4.5 }
+
+
+```
