@@ -217,7 +217,7 @@ df_affinity <- google_analytics(GA_id,
 
 ## Data manipulation with dplyr
 df_affinity_cleaned <- df_affinity %>%
-                           separate("interestAffinityCategory", "interestAffinityCategory2", sep = "/" ) 
+                           separate("interestAffinityCategory", "interestAffinityCategory2", sep = "/" ) %>% 
                            ddply(c("interestAffinityCategory2"), summarize, sessions = sum(sessions)) %>% 
                            arrange(-sessions) %>% 
                            mutate(interestAffinityCategory2 = factor(interestAffinityCategory2, 
@@ -228,12 +228,41 @@ affinity_plot <- df_affinity_cleaned  %>%
   geom_bar(stat = "identity", fill = "#cd0000") +
   coord_flip() +
   labs(title = "Affinity Category Overview, 2018",
-       subtitle = "Lifestyles similar to TV audiences, for example: Technophiles, Sports Fans, and Cooking Enthusiasts.",
+       subtitle = "Lifestyles similar to TV audiences, for example: Technophiles, Sports Fans...",
        caption = "Source: Google Analytics", 
        x = "Affinity Category", y = "Session") +
   theme_minimal() 
 
 affinity_plot
 
+## Query
+df_age <- google_analytics(GA_id, 
+                                   date_range, 
+                                   metrics = c("pageviews"),
+                                   dimensions = c("dayOfWeek", "hour", "userAgeBracket"),
+                                   anti_sample = TRUE)
 
+## Facet heatmaps by age brackets
+heatmap_age_brackets <- df_age %>% 
+ #filter(channelGrouping == "Organic search") %>%
+  ggplot(aes(x = dayOfWeek, userAgeBracket, y = hour, fill = pageviews)) + 
+  geom_tile(color = 'White', size = 0.1) +
+  facet_grid(.~userAgeBracket) +
+  scale_fill_viridis(option = "B") +
+  coord_equal() +
+  # Re-order and rename X-scale
+  scale_x_discrete(limits=c("1","2","3","4","5","6","0"), 
+  labels=c("1" = "Monday", "2" = "Thuesday","3" = "Wednesday","4" = "Thursday",
+           "5" = "Friday","6" = "Saturday","0" = "Sunday")) +
+  labs(x="Day Of Week", y="Hour of day") +
+  theme(
+    axis.text.x = element_text(face="plain", color="black", size=9, angle=90),
+    axis.text.y = element_text(face="plain", color="black", size=9, angle=0), 
+    axis.line = element_line(colour = "black", size = 0, linetype = "solid"),
+    strip.text.x = element_text(size=11, angle=0, face="bold"),
+    strip.text.y = element_text(size=11, face="bold"),
+    strip.background = element_rect(colour="white", fill="#FFFFFF"),
+    panel.background = element_blank())
+
+heatmap_age_brackets
 
