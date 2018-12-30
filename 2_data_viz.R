@@ -191,3 +191,49 @@ plot_heatmap_day_of_week <- df6 %>%
            coord_equal()
            
 plot_heatmap_day_of_week
+
+## Query
+df7 <- google_analytics(GA_id, 
+                        date_range, 
+                        metrics = c( "sessions"), 
+                        dimensions = c("hour", "userGender"),
+                        anti_sample = TRUE)
+
+## Facet plot by gender 
+line_plot_gender <- df7 %>% 
+          ggplot(aes(x = hour, y = sessions, group = userGender)) + 
+          geom_line(aes(colour = userGender)) +
+          facet_grid(userGender ~ ., scales = "free") +
+          theme_minimal()
+
+line_plot_gender
+
+## Query
+df_affinity <- google_analytics(GA_id, 
+                        date_range, 
+                        metrics = c( "sessions"), 
+                        dimensions = c("interestAffinityCategory"),
+                        anti_sample = TRUE)
+
+## Data manipulation with dplyr
+df_affinity_cleaned <- df_affinity %>%
+                           separate("interestAffinityCategory", "interestAffinityCategory2", sep = "/" ) 
+                           ddply(c("interestAffinityCategory2"), summarize, sessions = sum(sessions)) %>% 
+                           arrange(-sessions) %>% 
+                           mutate(interestAffinityCategory2 = factor(interestAffinityCategory2, 
+                                  levels = rev(interestAffinityCategory2)))
+
+affinity_plot <- df_affinity_cleaned  %>% 
+  ggplot(aes(x = interestAffinityCategory2, y = sessions)) +
+  geom_bar(stat = "identity", fill = "#cd0000") +
+  coord_flip() +
+  labs(title = "Affinity Category Overview, 2018",
+       subtitle = "Lifestyles similar to TV audiences, for example: Technophiles, Sports Fans, and Cooking Enthusiasts.",
+       caption = "Source: Google Analytics", 
+       x = "Affinity Category", y = "Session") +
+  theme_minimal() 
+
+affinity_plot
+
+
+
