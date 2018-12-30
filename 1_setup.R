@@ -11,6 +11,9 @@ library("tidyverse")
 ## Authorization with GA GA servers
 ga_auth()
 
+## Force new aurization, even if there is a cached token
+## ga_auth(new_user = TRUE) 
+
 ## Google Analytics Account List
 account_list <- google_analytics_account_list()
 
